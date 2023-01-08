@@ -1,0 +1,58 @@
+imports                   :
+  thy_global          : ./
+  thy_python|docs     : ./docs/python
+  thy_systems|docs    : ./docs/systems
+  thy_devops|docs     : ./docs/devops
+  thy_kitchensink|docs: ./docs/kitchensink
+  thy_misc|docs       : ./docs/misc
+  thy_web|docs        : ./docs/web
+  thy_monitoring|docs : ./docs/monitoring
+  thy_networking|docs : ./docs/networking
+#  thy_|docs: ./docs/
+
+git module thy_global     :
+  url : https://github.com/thy-x/global.git
+  drop:
+    - .gitignore
+
+git module thy_python     :
+  url      : https://github.com/thy-x/python.git
+  recursive: false
+
+git module thy_systems    :
+  url      : https://github.com/thy-x/systems.git
+  recursive: false
+
+git module thy_devops     :
+  url      : https://github.com/thy-x/devops.git
+  recursive: false
+
+git module thy_kitchensink:
+  url      : https://github.com/thy-x/kitchensink.git
+  recursive: false
+
+git module thy_misc       :
+  url      : https://github.com/thy-x/misc.git
+  recursive: false
+
+git module thy_web        :
+  url      : https://github.com/thy-x/web.git
+  recursive: false
+
+git module thy_monitoring:
+  url      : https://github.com/thy-x/monitoring.git
+  recursive: false
+
+git module thy_networking:
+  url      : https://github.com/thy-x/networking.git
+  recursive: false
+
+#git module thy_:
+#  url      : https://github.com/thy-x/.git
+#  recursive: false
+
+rule docs                 :
+  export: docs
+  drop  :
+    - docs/conf.py
+    - docs/_static

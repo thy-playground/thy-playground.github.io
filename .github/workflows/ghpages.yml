@@ -1,0 +1,67 @@
+name       : Sphinx ghpages
+on         :
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+env        :
+  PY_VER       : '3.11'
+  PERU_VER     : '1.3.1'
+  AWS_REGION   : ap-southeast-1
+  INSTANCE_NAME: thy1
+  PORT_INFO    : fromPort=22,protocol=TCP,toPort=22
+
+permissions:
+  contents: read
+  pages   : write
+  id-token: write
+
+concurrency:
+  group             : "ghpages"
+  cancel-in-progress: true
+
+jobs       :
+
+  deploy_sphinx:
+    #    if     : endsWith(github.repository, '.github.io')
+    environment:
+      name: github-pages
+      url : ${{ steps.deployment.outputs.page_url }}
+    runs-on    : ubuntu-latest
+    steps      :
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Python
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PY_VER }}
+          cache         : 'pip'
+
+      - name: Update pip
+        run : pip install -U pip wheel setuptools
+
+      - name: Run peru sync
+        run : |
+          pip install "peru~=${{ env.PERU_VER }}"
+          peru sync --no-cache --force
+
+      - name: Run pip install
+        run : pip install -r requirements.thyglobal.txt
+
+      # Sphinx
+      - name: Run sphinx-build html
+        run : sphinx-build -M html docs build
+
+      # Github Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'build/html'
+
+      - name: Deploy to GitHub Pages
+        id  : deployment
+        uses: actions/deploy-pages@v1
