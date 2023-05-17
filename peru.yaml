@@ -1,14 +1,14 @@
 imports                   :
   thy_global          : ./
-  thy_python|docs     : ./docs/python
-  thy_systems|docs    : ./docs/systems
-  thy_devops|docs     : ./docs/devops
-  thy_kitchensink|docs: ./docs/kitchensink
-  thy_misc|docs       : ./docs/misc
-  thy_web|docs        : ./docs/web
-  thy_monitoring|docs : ./docs/monitoring
-  thy_networking|docs : ./docs/networking
-#  thy_|docs: ./docs/
+  thy_python|docs123     : ./docs/python
+  thy_systems|docs123    : ./docs/systems
+  thy_devops|docs123     : ./docs/devops
+  thy_kitchensink|docs123: ./docs/kitchensink
+  thy_misc|docs123       : ./docs/misc
+  thy_web|docs123       : ./docs/web
+  thy_monitoring|docs123 : ./docs/monitoring
+  thy_networking|docs123 : ./docs/networking
+#  thy_|docs123: ./docs/
 
 git module thy_global     :
   url : https://github.com/thy-x/global.git
@@ -51,8 +51,8 @@ git module thy_networking:
 #  url      : https://github.com/thy-x/.git
 #  recursive: false
 
-#rule docs                 :
-#  export: docs
-#  drop  :
-#    - docs/conf.py
-#    - docs/_static
+rule docs123                 :
+  export: docs
+  drop  :
+    - docs/conf.py
+    - docs/_static
