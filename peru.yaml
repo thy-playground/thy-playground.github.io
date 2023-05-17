@@ -51,8 +51,8 @@ git module thy_networking:
 #  url      : https://github.com/thy-x/.git
 #  recursive: false
 
-rule docs                 :
-  export: docs
-  drop  :
-    - docs/conf.py
-    - docs/_static
+#rule docs                 :
+#  export: docs
+#  drop  :
+#    - docs/conf.py
+#    - docs/_static
